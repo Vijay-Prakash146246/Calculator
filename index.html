@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masai Calculator</title>
+    <style>
+      h1 {
+        text-align: center;
+        font-size: 50px;
+        color: teal;
+      }
+      #calculator
+      {
+        height: 370px;
+        width: 30%;
+        /* border: 2px solid red; */
+        margin: auto;
+        margin-top: 30px;
+        border-radius: 10px;
+        padding: 40px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;;
+      }
+      #display
+      {
+        height: 17%;
+        width: 90%;
+        border-radius: 10px;
+        margin: auto;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+         
+      }
+      #keyboard{
+        width: 90%;
+        margin: auto;
+        /* border: 1px solid red; */
+        height: 80%;
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-template-columns: (4,80px);
+        gap: 10px;
+        margin-top: 20px;
+
+      }
+      #keyboard > div{
+        border-radius: 10px;
+        justify-content: center;
+        align-items: center;
+        display: grid;
+        font-size: 25px;
+        font-weight: bold;
+
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      }
+      #keyboard >  div:hover{
+        background-color: teal;
+        cursor: pointer;
+      }
+      .black
+      {
+        background-color: black;
+        color: white;
+      }
+      #red
+      {
+        background-color: red;
+        color: white;
+      }
+      #display
+      {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 40px;
+        overflow-x: scroll;
+      }
+
+      /* use grid to acheive the layout */
+    </style>
+  </head>
+  <body>
+    <h1>Masai Calculator</h1>
+    <div id="calculator">
+      <div id="display"></div>
+      <div id="keyboard">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div class="black">+</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div class="black">-</div>
+        <div>7</div>
+        <div >8</div>
+        <div>9</div>
+        <div class="black">*</div>
+        <div id="red">C</div>
+        <div>0</div>
+        <div class="black">=</div>
+        <div class="black">/</div>
+      </div>
+
+    </div>
+  </body>
+</html>
+<script>
+  var nums = document.querySelectorAll("#keyboard > div");
+  var bag = document.querySelector("#display");
+  // console.log(bag,nums);
+  for(var i=0;i<nums.length;i++)
+  {
+    nums[i].addEventListener("click",mycalculator);
+  }
+  function mycalculator()
+  {
+    var targetNumber = event.target.innerText;
+      if(targetNumber!=undefined)
+      {
+            switch(targetNumber)
+            {
+              case "C": 
+              bag.innerText="";
+              break;
+              case "=": 
+              if(eval(bag.innerText)!=undefined) // ya c0nditio hamna iss liya likha hai ki = press karna k baad undefined deta tha
+              {
+              bag.innerText=eval(bag.innerText);
+            }
+              break;
+
+              default: 
+                bag.innerText=bag.innerText+targetNumber;
+            }
+    }
+    else
+    {
+      document.querySelector("#display").innerText="";
+    }
+  }
+</script>
